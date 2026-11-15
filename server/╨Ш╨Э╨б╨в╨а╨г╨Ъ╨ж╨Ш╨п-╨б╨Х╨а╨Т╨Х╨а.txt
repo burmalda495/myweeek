@@ -1,0 +1,9 @@
+СЕРВЕР ДРУЗЕЙ И УВЕДОМЛЕНИЙ (на твоём сервере)
+
+Подробная пошаговая инструкция есть в отдельном документе. Коротко:
+1. Нужны Node.js 18+, домен (например api.твойдомен.ru) с A-записью на IP сервера и HTTPS (например через Caddy).
+2. В папке server: npm install, затем npx web-push generate-vapid-keys.
+3. Запусти server.js с переменными VAPID_PUBLIC, VAPID_PRIVATE, VAPID_SUBJECT, ALLOWED_ORIGIN (адрес приложения на Cloudflare, например https://myweek.pages.dev, без слэша в конце), PORT=3000.
+4. В site/config.js впиши: window.MYWEEK_API = "https://api.твойдомен.ru";
+5. Задеплой сайт заново: npx wrangler pages deploy site --project-name myweek
+На iPhone уведомления работают только если приложение добавлено на экран «Домой» (iOS 16.4 и новее).

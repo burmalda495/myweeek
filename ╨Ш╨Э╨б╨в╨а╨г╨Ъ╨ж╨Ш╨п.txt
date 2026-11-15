@@ -1,0 +1,15 @@
+MY WEEK НА CLOUDFLARE PAGES
+
+Структура:
+  site/       - само приложение (его видят все)
+  functions/  - функция фото-подсчёта (api/food), лежит в корне проекта, не внутри site
+  server/     - сервер друзей и уведомлений для ТВОЕГО сервера (на Cloudflare не загружается)
+
+Выкладка (нужен Node.js 18+; перетаскивание в панели Cloudflare функции НЕ загружает, нужен wrangler):
+  npx wrangler login
+  npx wrangler pages project create myweek --production-branch main
+  npx wrangler pages deploy site --project-name myweek
+  npx wrangler pages secret put GEMINI_API_KEY --project-name myweek
+  npx wrangler pages deploy site --project-name myweek     (ещё раз, чтобы секрет заработал)
+
+Сайт будет на https://myweek.pages.dev. Полная инструкция (ключ Gemini, свой сервер, домен, проверка, ошибки) в отдельном документе.
